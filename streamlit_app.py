@@ -8,12 +8,11 @@ st.write(
     """Choose the fruits you want in your custom Smoothie!
     """)
 
-
-
 name_on_order = st.text_input("Name on Smoothie:")
 st.write("The name on your Smoothie will be:", name_on_order)
+cnx = st.connection("snowflake")
+session = cnx.session()
 
-session = get_active_session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME')) # With the select(col()) I can specify which columns to extract from a table.
 # st.dataframe(data=my_dataframe, use_container_width=True)
 
